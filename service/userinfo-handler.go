@@ -3,7 +3,7 @@ package service
 import (
 	"net/http"
 	"strconv"
-	"github.com/LIANGTJ/golang-learning/web/cloudgo-data/entities"
+	"github.com/LIANGTJ/cloudgo-data/entities"
 	"github.com/unrolled/render"
 )
 
@@ -15,8 +15,8 @@ func postUserInfoHandler(formatter *render.Render) http.HandlerFunc {
 			formatter.JSON(w, http.StatusBadRequest, struct{ ErrorIndo string }{"Bad Input!"})
 			return
 		}
-		u := entities.NewUserInfo(entities.UserInfo{Username: req.Form["username"][0]})
-		u.Departname = req.Form["departname"][0]
+		u := entities.NewUserInfo(entities.UserInfo{UserName: req.Form["username"][0]})
+		u.DepartName = req.Form["departname"][0]
 		entities.UserInfoService.Save(u)
 		formatter.JSON(w, http.StatusOK, u)
 	}

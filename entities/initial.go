@@ -1,16 +1,16 @@
 package entities
 
 import (
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/go-xorm/core"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 var engine *xorm.Engine
 
 func init() {
-
-	engine, err := xorm.NewEngine("mysql", "root:root@tcp(127.0.0.1:3306)/test?charset=utf8")
+	var err error
+	engine, err= xorm.NewEngine("mysql", "root:root@tcp(127.0.0.1:3306)/test?charset=utf8&parseTime=true")
 	if err != nil {
 		panic(err)
 	}
@@ -22,8 +22,8 @@ func init() {
 	engine.SetMapper(core.SameMapper{})
 	engine.Sync2(new(UserInfo))
 	// engine.ShowWarn = true
-	// engine.ShowSQL(true)
-	// engine.Logger().SetLevel(core.LOG_DEBUG)
+	engine.ShowSQL(true)
+	engine.Logger().SetLevel(core.LOG_DEBUG)
 }
 
 

@@ -8,17 +8,17 @@ var UserInfoService = UserInfoAtomicService{}
 
 // Save .
 func (*UserInfoAtomicService) Save(u *UserInfo)  {
-	 Insert(u)
+	 Save(u)
 	
 }
 
 // FindAll .
 func (*UserInfoAtomicService) FindAll() []UserInfo {
-	 return FindAllUser()
+	 return FindAll()
 	
 }
 
 // FindByID .
 func (*UserInfoAtomicService) FindByID(id int) *UserInfo {
-	return FindUserByID(id)
+	return FindByID(id)
 }

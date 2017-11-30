@@ -1,24 +1,13 @@
 package entities
-import (
-	"fmt"
-)
-
-
-
 // Save .
-func Insert(u * UserInfo)  {
-	// _,err := engine.Exec(userInfoInsertSql,u.Username,u.Departname)
-	// un := UserInfo{Username: "ltj", Departname: "609"}
-	fmt.Println("insert: ",*u)
+func Save(u * UserInfo)  {
 	_, err := engine.Insert(u)
 	checkErr(err)
-	
-	
 
 }
 
 // FindAll .
-func  FindAllUser() []UserInfo {
+func  FindAll() []UserInfo {
 
 	ulist := make([]UserInfo, 0, 0)
 	err := engine.Find(&ulist)
@@ -27,7 +16,7 @@ func  FindAllUser() []UserInfo {
 }
 
 // FindByID . 
-func FindUserByID(id int) *UserInfo {
+func FindByID(id int) *UserInfo {
 	user := new(UserInfo)
 	_,err := engine.Id(id).Get(user)
 	checkErr(err)
